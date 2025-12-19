@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cane | AI & Creativity</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="day-mode">
+
+    <!-- Toggle Button -->
+    <button id="mode-toggle" class="btn-toggle" aria-label="Toggle Day/Night Mode">
+        <i data-lucide="sun" id="icon-sun"></i>
+        <i data-lucide="moon" id="icon-moon" style="display: none;"></i>
+        <span id="text-mode">DAY MODE</span>
+    </button>
+
+    <!-- Main Container -->
+    <main class="container">
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1 id="hero-title">BRIDGING INTENT & OUTPUT</h1>
+            <div class="hero-divider"></div>
+            <p id="hero-desc" class="mono">Driving adoption one conversation at a time. In the age of AI, the human element is the strongest variable.</p>
+        </section>
+
+        <!-- Day Content (Professional) -->
+        <section id="day-content" class="content-section active">
+            <div class="grid-3">
+                <!-- Card 1 -->
+                <div class="card">
+                    <div class="card-icon"><i data-lucide="briefcase" size="32"></i></div>
+                    <h3 class="card-title">Adoption Strategy</h3>
+                    <span class="card-role">Strategy</span>
+                    <p class="card-desc">Facilitating the integration of agentic workflows in enterprise environments. Moving beyond 'chatbots' to actual business utility.</p>
+                    <a href="#" class="btn-link">CASE STUDY <i data-lucide="arrow-right" size="16"></i></a>
+                </div>
+                <!-- Card 2 -->
+                <div class="card">
+                    <div class="card-icon"><i data-lucide="users" size="32"></i></div>
+                    <h3 class="card-title">Human-Centric AI</h3>
+                    <span class="card-role">Human-in-the-Loop</span>
+                    <p class="card-desc">Designing frameworks where AI handles the computation, and humans handle the judgment. Reducing friction, increasing leverage.</p>
+                    <a href="#" class="btn-link">CASE STUDY <i data-lucide="arrow-right" size="16"></i></a>
+                </div>
+                <!-- Card 3 -->
+                <div class="card">
+                    <div class="card-icon"><i data-lucide="zap" size="32"></i></div>
+                    <h3 class="card-title">The Facilitator</h3>
+                    <span class="card-role">Education</span>
+                    <p class="card-desc">Translating complex model capabilities into actionable team workflows. If the tool isn't used, the innovation doesn't exist.</p>
+                    <a href="#" class="btn-link">CASE STUDY <i data-lucide="arrow-right" size="16"></i></a>
+                </div>
+            </div>
+
+            <div style="margin-top: 5rem; border-top: 2px solid currentColor; padding-top: 2rem;">
+                <h2 class="mono" style="font-size: 1.5rem; margin-bottom: 1.5rem;">LATEST INSIGHTS</h2>
+                <ul class="mono" style="list-style: none;">
+                    <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #ccc; padding: 0.5rem 0;">
+                        <span>The Future of Work is Hybrid AI</span>
+                        <span>2023.10.12</span>
+                    </li>
+                    <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #ccc; padding: 0.5rem 0;">
+                        <span>Facilitating Change in Legacy Systems</span>
+                        <span>2023.09.28</span>
+                    </li>
+                    <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #ccc; padding: 0.5rem 0;">
+                        <span>Agentic Workflows 101</span>
+                        <span>2023.08.15</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Night Content (Creative) -->
+        <section id="night-content" class="content-section">
+            <div class="grid-3">
+                <!-- Experiment 1 -->
+                <div class="night-card">
+                    <div class="night-header">
+                        <span class="tag-bubble">VISUALS</span>
+                        <i data-lucide="terminal"></i>
+                    </div>
+                    <h3 class="card-title" style="text-transform: uppercase;">[VISUAL_SYNTHESIS]</h3>
+                    <p class="mono" style="font-size: 0.75rem; margin-bottom: 1rem;">GENERATIVE ART</p>
+                    <p style="font-size: 0.875rem;">Brutalist architecture mixed with biological horror. Utilizing high-fidelity image generation to explore non-Euclidean spaces.</p>
+                </div>
+                <!-- Experiment 2 -->
+                <div class="night-card">
+                    <div class="night-header">
+                        <span class="tag-bubble">AUDIO</span>
+                        <i data-lucide="terminal"></i>
+                    </div>
+                    <h3 class="card-title" style="text-transform: uppercase;">[AUDIO_INJECTION]</h3>
+                    <p class="mono" style="font-size: 0.75rem; margin-bottom: 1rem;">AUDIO SYNTHESIS</p>
+                    <p style="font-size: 0.875rem;">Metalcore structures generated via neural audio synthesis. Square-bracket prompting for structural integrity.</p>
+                </div>
+                <!-- Experiment 3 -->
+                <div class="night-card">
+                    <div class="night-header">
+                        <span class="tag-bubble">VIDEO</span>
+                        <i data-lucide="terminal"></i>
+                    </div>
+                    <h3 class="card-title" style="text-transform: uppercase;">[TEMPORAL_SHIFT]</h3>
+                    <p class="mono" style="font-size: 0.75rem; margin-bottom: 1rem;">VIDEO GEN</p>
+                    <p style="font-size: 0.875rem;">Short-form vertical video generation using Grok Imagine and Veo3. Static to motion workflows.</p>
+                </div>
+            </div>
+
+            <div class="manifesto">
+                <div style="flex: 1; min-width: 300px; border: 1px solid var(--color-night-fg); padding: 1.5rem;">
+                    <i data-lucide="code" style="margin-bottom: 1rem;"></i>
+                    <h2 class="mono" style="font-size: 1.25rem; margin-bottom: 1rem;">LATEST_EXP</h2>
+                    <pre class="code-block">
+function dream(seed) {
+  const reality = new Tensor(seed);
+  while (true) {
+    reality.entropy += 0.1;
+    if (reality.collapse()) break;
+    yield reality.visualize();
+  }
+}</pre>
+                </div>
+                <div style="flex: 1; min-width: 300px;">
+                    <h2 class="mono" style="font-size: 2rem; margin-bottom: 1rem; color: var(--color-night-fg);">MANIFESTO_V1</h2>
+                    <p class="mono" style="font-size: 0.875rem; line-height: 1.8; color: var(--color-night-fg);">
+                        We are building the bridge while walking on it. The night is not for sleep; it is for training.
+                        Every parameter tweaked is a step closer to the singularity. Create until the model converges.
+                        <br><br>
+                        // END OF LINE
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div style="text-align: left;">
+                    <h4 style="font-weight: bold; font-size: 1.125rem;">CANE PORTFOLIO</h4>
+                    <p id="footer-copyright" class="mono" style="font-size: 0.75rem; margin-top: 0.25rem; opacity: 0.7;">© 2024 All Rights Reserved.</p>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i data-lucide="mail"></i></a>
+                    <a href="#"><i data-lucide="github"></i></a>
+                    <a href="#"><i data-lucide="linkedin"></i></a>
+                    <a href="#"><i data-lucide="twitter"></i></a>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Logic -->
+    <script src="script.js"></script>
+</body>
+</html>
