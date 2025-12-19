@@ -2,24 +2,76 @@
     --font-sans: 'Inter', sans-serif;
     --font-mono: 'Courier Prime', monospace;
 
-    --color-day-bg: #ffffff;
+    --color-day-bg: #f4f4f0; /* Slightly off-white for swiss/brutalist paper feel */
     --color-day-fg: #000000;
-    --color-night-bg: #000000;
-    --color-night-fg: #39ff14;
+    --color-day-accent: #ff3333; /* Brutalist Red Accent */
 
-    --shadow-hard: 4px 4px 0px 0px currentColor;
+    --color-night-bg: #050505;
+    --color-night-fg: #39ff14;
+    --color-night-dim: #1a4d1a;
+
+    --border-thick: 3px;
+    --shadow-hard: 6px 6px 0px 0px currentColor;
+    --shadow-hover: 10px 10px 0px 0px currentColor;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    cursor: none; /* Hide default cursor */
+}
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 body {
     font-family: var(--font-sans);
     transition: background-color 0.5s ease, color 0.5s ease;
     min-height: 100vh;
+    overflow-x: hidden;
+    /* Dot Grid Background */
+    background-image: radial-gradient(circle, #888 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* Custom Cursor */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: 2px solid currentColor;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+.custom-cursor.active {
+    width: 50px;
+    height: 50px;
+    background-color: currentColor;
+    opacity: 0.5;
 }
 
 /* Day Mode (Default) */
@@ -27,6 +79,8 @@ body.day-mode {
     background-color: var(--color-day-bg);
     color: var(--color-day-fg);
     font-family: var(--font-sans);
+    /* Make dots lighter in day mode */
+    background-image: radial-gradient(circle, #ccc 1px, transparent 1px);
 }
 
 /* Night Mode */
@@ -34,192 +88,305 @@ body.night-mode {
     background-color: var(--color-night-bg) !important;
     color: var(--color-night-fg) !important;
     font-family: var(--font-mono) !important;
+    /* Make dots neon green in night mode */
+    background-image: radial-gradient(circle, #1a4d1a 1px, transparent 1px);
+}
+
+/* Scanline Overlay for Night Mode */
+body.night-mode::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    z-index: 9000;
 }
 
 /* Utilities */
 .container {
-    max-width: 1200px;
+    max-width: 1400px; /* Wider for that brutalist scale */
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 2rem;
+    position: relative;
 }
 
 .mono {
     font-family: var(--font-mono);
 }
 
-.hard-shadow {
-    box-shadow: var(--shadow-hard);
-}
-
 .btn-toggle {
     position: fixed;
-    top: 1rem;
-    right: 1rem;
-    z-index: 50;
-    padding: 0.5rem 1rem;
-    border: 2px solid currentColor;
-    background: transparent;
+    top: 2rem;
+    right: 2rem;
+    z-index: 100;
+    padding: 1rem 1.5rem;
+    border: var(--border-thick) solid currentColor;
+    background: var(--color-day-bg);
     color: inherit;
     font-family: var(--font-mono);
     font-weight: bold;
     text-transform: uppercase;
-    cursor: pointer;
+    cursor: none; /* Custom cursor */
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    transition: transform 0.2s;
+    box-shadow: var(--shadow-hard);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+body.night-mode .btn-toggle {
+    background: var(--color-night-bg);
 }
 
 .btn-toggle:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: var(--shadow-hard);
+    transform: translate(-4px, -4px);
+    box-shadow: var(--shadow-hover);
 }
 
 /* Hero */
 .hero {
-    height: 60vh;
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
+    padding-top: 4rem;
+    position: relative;
 }
 
 .hero h1 {
-    font-family: var(--font-mono);
-    font-size: 4rem;
-    font-weight: 700;
+    font-family: var(--font-mono); /* Force mono for glitch effect feeling */
+    font-size: clamp(3rem, 10vw, 8rem); /* Massive responsive text */
+    font-weight: 900;
     letter-spacing: -0.05em;
     text-transform: uppercase;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    line-height: 0.9;
+    position: relative;
+    z-index: 1;
+}
+
+/* Glitch Effect (CSS Only part) */
+.glitch-wrapper {
+    position: relative;
+    display: inline-block;
 }
 
 .hero-divider {
-    width: 100px;
-    height: 4px;
+    width: 100%;
+    max-width: 200px;
+    height: 8px;
     background-color: currentColor;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    max-width: 600px;
+    line-height: 1.6;
+    background: var(--color-day-bg); /* Mask the grid behind text */
+    padding: 1rem;
+    border: 1px solid currentColor;
+}
+
+body.night-mode .hero p {
+    background: var(--color-night-bg);
 }
 
 /* Content Sections */
 .content-section {
     display: none;
-    padding: 4rem 0;
-    animation: fadeIn 0.7s ease-in-out;
+    padding: 6rem 0;
+    /* animation: fadeIn 0.7s ease-in-out; <- Removing default fade, using GSAP */
 }
 
 .content-section.active {
     display: block;
 }
 
-/* Day Grid */
+/* Day Grid - Neo Brutalist */
 .grid-3 {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
 }
 
 .card {
-    border: 2px solid currentColor;
-    padding: 1.5rem;
+    border: var(--border-thick) solid currentColor;
+    background: var(--color-day-bg);
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    transition: box-shadow 0.2s;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: var(--shadow-hard);
+    position: relative;
 }
 
 .card:hover {
-    box-shadow: var(--shadow-hard);
+    transform: translate(-4px, -4px);
+    box-shadow: var(--shadow-hover);
 }
 
 .card-icon {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border: 2px solid currentColor;
+    border-radius: 50%; /* Mix subtle round with hard square */
 }
 
 .card-title {
-    font-size: 1.25rem;
-    font-weight: bold;
+    font-size: 2rem;
+    font-weight: 900;
     margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: -1px;
 }
 
 .card-role {
     font-family: var(--font-mono);
-    font-size: 0.875rem;
-    opacity: 0.7;
-    margin-bottom: 1rem;
+    font-size: 1rem;
+    background: currentColor;
+    color: var(--color-day-bg);
+    padding: 0.25rem 0.75rem;
+    margin-bottom: 1.5rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+body.night-mode .card-role {
+    color: var(--color-night-bg);
 }
 
 .card-desc {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
     line-height: 1.5;
 }
 
 .btn-link {
-    font-weight: bold;
+    font-weight: 900;
     text-decoration: none;
     color: inherit;
-    border-bottom: 2px solid transparent;
+    border: 2px solid currentColor;
+    padding: 0.75rem 1.5rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    text-transform: uppercase;
+    transition: background 0.2s, color 0.2s;
 }
 
 .btn-link:hover {
-    border-bottom-color: currentColor;
+    background: currentColor;
+    color: var(--color-day-bg);
 }
 
-/* Night Grid */
+body.night-mode .btn-link:hover {
+    color: var(--color-night-bg);
+}
+
+/* Night Grid - Cyberpunk */
 .night-card {
     border: 1px solid var(--color-night-fg);
-    padding: 1rem;
+    background: rgba(0, 20, 0, 0.3);
+    padding: 1.5rem;
     position: relative;
     overflow: hidden;
     transition: background-color 0.3s, color 0.3s;
 }
 
+/* Corner markers for tech feel */
+.night-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 10px; height: 10px;
+    border-top: 2px solid currentColor;
+    border-left: 2px solid currentColor;
+}
+.night-card::after {
+    content: "";
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 10px; height: 10px;
+    border-bottom: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+}
+
 .night-card:hover {
-    background-color: var(--color-night-fg);
-    color: var(--color-night-bg);
+    background-color: rgba(57, 255, 20, 0.1);
 }
 
 .night-header {
     display: flex;
     justify-content: space-between;
     margin-bottom: 2rem;
+    border-bottom: 1px dashed currentColor;
+    padding-bottom: 1rem;
 }
 
 .tag-bubble {
     font-family: var(--font-mono);
     font-size: 0.75rem;
-    border: 1px solid currentColor;
-    padding: 0.1rem 0.5rem;
-    border-radius: 999px;
+    background: currentColor;
+    color: var(--color-night-bg);
+    padding: 0.2rem 0.6rem;
+    font-weight: bold;
 }
 
 .manifesto {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
-    margin-top: 4rem;
+    gap: 3rem;
+    margin-top: 6rem;
+    border: 1px solid currentColor;
+    padding: 2rem;
+    position: relative;
+}
+
+.manifesto::before {
+    content: "MANIFESTO_LOG";
+    position: absolute;
+    top: -0.8rem;
+    left: 1rem;
+    background: var(--color-night-bg);
+    padding: 0 0.5rem;
+    font-family: var(--font-mono);
+    font-weight: bold;
 }
 
 .code-block {
-    background: #111;
+    background: #000;
     color: var(--color-night-fg);
-    padding: 1rem;
+    padding: 1.5rem;
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     overflow-x: auto;
     border: 1px solid #333;
+    box-shadow: 4px 4px 0 rgba(57, 255, 20, 0.2);
 }
 
 /* Footer */
 footer {
-    border-top: 2px solid currentColor;
-    padding: 3rem 0;
+    border-top: var(--border-thick) solid currentColor;
+    padding: 4rem 0;
     margin-top: auto;
+    background: var(--color-day-bg);
+}
+
+body.night-mode footer {
+    background: var(--color-night-bg);
 }
 
 .footer-content {
@@ -227,7 +394,7 @@ footer {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 1.5rem;
+    gap: 2rem;
 }
 
 .social-links {
@@ -238,18 +405,47 @@ footer {
 .social-links a {
     color: inherit;
     transition: transform 0.2s;
+    border: 2px solid transparent;
+    padding: 0.5rem;
 }
 
 .social-links a:hover {
-    transform: scale(1.1);
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    border-color: currentColor;
+    box-shadow: 4px 4px 0 currentColor;
+    transform: translate(-2px, -2px);
 }
 
 @media (max-width: 768px) {
     .hero h1 { font-size: 3rem; }
     .footer-content { flex-direction: column; text-align: center; }
+}
+
+/* Marquee */
+.marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+    border-top: var(--border-thick) solid currentColor;
+    border-bottom: var(--border-thick) solid currentColor;
+    padding: 1rem 0;
+    margin: 2rem 0;
+    background: currentColor;
+    color: var(--color-day-bg);
+}
+
+body.night-mode .marquee-container {
+    color: var(--color-night-bg);
+}
+
+.marquee-content {
+    display: inline-block;
+    animation: marquee 20s linear infinite;
+    font-family: var(--font-mono);
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
