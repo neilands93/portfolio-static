@@ -43,7 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Hero Text
             heroTitle.style.color = 'var(--color-day-fg)';
-            heroDesc.textContent = 'AI Facilitation & Tech Adoption Specialist';
+            heroTitle.textContent = 'BRIDGING INTENT & OUTPUT';
+            heroDesc.textContent = 'Driving adoption one conversation at a time. In the age of AI, the human element is the strongest variable.';
 
             // Footer Text
             footerCopyright.textContent = '© 2024 All Rights Reserved.';
@@ -63,7 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Hero Text
             heroTitle.style.color = 'var(--color-night-fg)';
-            heroDesc.textContent = 'Exploring the Digital Void // Creative AI Experiments';
+            heroTitle.textContent = 'SYNTHETIC ARCHITECT';
+            heroDesc.textContent = 'Exploring the latent space. Visuals by Grok & Veo3. Audio by Suno. Logic by Jules.';
 
             // Footer Text
             footerCopyright.textContent = 'NO COPYRIGHT. STEAL LIKE AN ARTIST.';

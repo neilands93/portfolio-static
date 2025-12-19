@@ -26,12 +26,14 @@ body {
 body.day-mode {
     background-color: var(--color-day-bg);
     color: var(--color-day-fg);
+    font-family: var(--font-sans);
 }
 
 /* Night Mode */
 body.night-mode {
     background-color: var(--color-night-bg) !important;
     color: var(--color-night-fg) !important;
+    font-family: var(--font-mono) !important;
 }
 
 /* Utilities */
