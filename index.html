@@ -13,10 +13,19 @@
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
+    <!-- External Libs (GSAP + Lenis) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="day-mode">
+
+    <!-- Custom Cursor -->
+    <div id="cursor" class="custom-cursor"></div>
 
     <!-- Toggle Button -->
     <button id="mode-toggle" class="btn-toggle" aria-label="Toggle Day/Night Mode">
@@ -34,6 +43,13 @@
             <div class="hero-divider"></div>
             <p id="hero-desc" class="mono">Driving adoption one conversation at a time. In the age of AI, the human element is the strongest variable.</p>
         </section>
+
+        <!-- Marquee -->
+        <div class="marquee-container">
+            <div class="marquee-content">
+                // AVAILABLE FOR WORK // SYSTEM DESIGN // CREATIVE DIRECTION // AI INTEGRATION // AVAILABLE FOR WORK // SYSTEM DESIGN // CREATIVE DIRECTION // AI INTEGRATION
+            </div>
+        </div>
 
         <!-- Day Content (Professional) -->
         <section id="day-content" class="content-section active">
@@ -64,18 +80,18 @@
                 </div>
             </div>
 
-            <div style="margin-top: 5rem; border-top: 2px solid currentColor; padding-top: 2rem;">
-                <h2 class="mono" style="font-size: 1.5rem; margin-bottom: 1.5rem;">LATEST INSIGHTS</h2>
+            <div style="margin-top: 6rem; border-top: 4px solid currentColor; padding-top: 3rem;">
+                <h2 class="mono" style="font-size: 2rem; margin-bottom: 2rem; text-transform: uppercase;">LATEST INSIGHTS</h2>
                 <ul class="mono" style="list-style: none;">
-                    <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #ccc; padding: 0.5rem 0;">
+                    <li style="display: flex; justify-content: space-between; border-bottom: 2px solid currentColor; padding: 1rem 0; font-size: 1.2rem;">
                         <span>The Future of Work is Hybrid AI</span>
                         <span>2023.10.12</span>
                     </li>
-                    <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #ccc; padding: 0.5rem 0;">
+                    <li style="display: flex; justify-content: space-between; border-bottom: 2px solid currentColor; padding: 1rem 0; font-size: 1.2rem;">
                         <span>Facilitating Change in Legacy Systems</span>
                         <span>2023.09.28</span>
                     </li>
-                    <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #ccc; padding: 0.5rem 0;">
+                    <li style="display: flex; justify-content: space-between; border-bottom: 2px solid currentColor; padding: 1rem 0; font-size: 1.2rem;">
                         <span>Agentic Workflows 101</span>
                         <span>2023.08.15</span>
                     </li>
